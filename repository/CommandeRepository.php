@@ -55,7 +55,7 @@ class CommandeRepository{
         
     }
 
-    function updateTotal(int $id, float $total){
+    function updateTotal(int $id, int $total){
         $sql = "UPDATE orders SET  total = :total WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute([':id' => $id, ':total'=> $total]);
