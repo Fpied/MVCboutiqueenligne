@@ -12,14 +12,14 @@ class CommandeRepository{
         $this->pdo= Database::getConnexion();
     }
 
-    function createOrder(int $user_id,string $created_at, int $total){
+    public function createOrder(int $user_id,string $created_at, int $total){
         $sql = "INSERT INTO orders(user_id, created_at, total) VALUES (:user_id, :created_at, :total)";
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute([':user_id' => $user_id, ':created_at' => $created_at, ':total' => $total ]);
 
     }
 
-    function findById(int $id)
+    public function findById(int $id)
     {
         $sql = "SELECT * FROM orders WHERE id= :id";
         $stmt = $this->pdo->prepare($sql);
@@ -34,7 +34,7 @@ class CommandeRepository{
         );
     }
 
-    function findByUserId(int $user_id)
+    public function findByUserId(int $user_id)
     {
         $sql = "SELECT * FROM orders WHERE user_id= :user_id";
         $stmt = $this->pdo->prepare($sql);
@@ -55,7 +55,7 @@ class CommandeRepository{
         
     }
 
-    function updateTotal(int $id, int $total){
+    public function updateTotal(int $id, int $total){
         $sql = "UPDATE orders SET  total = :total WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
         return $stmt->execute([':id' => $id, ':total'=> $total]);
