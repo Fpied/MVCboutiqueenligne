@@ -4,7 +4,8 @@ class Commande{
     private int $id;
     private int $user_id;
     private string $created_at;
-    private float $total;
+    private int $total;
+  
 
     public function __construct(int $id, int $user_id, string $created_at, int $total)
     {
