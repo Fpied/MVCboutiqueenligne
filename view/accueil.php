@@ -1,4 +1,11 @@
 <?php
+
+require __DIR__ . "/view/admin_produits.php";
+require __DIR__ . "/view/login.php";
+require __DIR__ . "/view/historique.php";
+require __DIR__ . "/view/panier.php;"
+
+
 ?>
 
 
@@ -7,7 +14,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tp_mvcboutiqueenligne</title>
+    <title>TP Boutique en locale</title>
 </head>
 <body>
 
@@ -26,7 +33,7 @@
 
         <h2><?= htmlspecialchars($product->getName()) ?></h2>
         <p><?= htmlspecialchars($product->getDescription()) ?>></p>
-        <p><?= number_format($product->getPrice()) ?> €</p>
+        <p><?= number_format($product->getPrice(), 2, ",", " ") ?> €</p>
 
         <form method="post" action="index.php?page=ajout-panier">
             <input type="hidden" name="id" value="<?= $product->getId() ?>">
@@ -38,3 +45,8 @@
 
 </body>
 </html>
+
+<?php require __DIR__ . "/../view/layout/footer.php" ?>
+
+
+
