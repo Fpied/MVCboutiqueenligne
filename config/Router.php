@@ -13,9 +13,9 @@ class Router
         // match = version moderne du switch (PHP 8+), plus stricte et concise.
         match ($route) {
             // 'accueil' => on crée le contrôleur et on appelle sa méthode index().
-            'accueil'        => (new ProduitController())->index(),
+            'accueil' => (new ProduitController(new ProduitRepository(Database::getConnexion())))->index(),
             'login'          => (new UtilisateurController())->login(),
-            'logout'         => (new UtilisateurController())->logout(),
+           //logout'         => (new UtilisateurController())->logout(),
             'panier'         => (new CommandeController())->panier(),
             'ajout-panier'   => (new CommandeController())->ajouter(),
             'valider'        => (new CommandeController())->valider(),
