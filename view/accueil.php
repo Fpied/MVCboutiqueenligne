@@ -3,7 +3,7 @@
 require __DIR__ . "/view/admin_produits.php";
 require __DIR__ . "/view/login.php";
 require __DIR__ . "/view/historique.php";
-require __DIR__ . "/view/panier.php;"
+require __DIR__ . "/view/panier.php";
 
 
 ?>
