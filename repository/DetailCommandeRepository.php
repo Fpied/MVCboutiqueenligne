@@ -22,20 +22,26 @@ class DetailCommandeRepository{
         $sql = "SELECT * FROM order_items WHERE order_id = :order_id";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([':order_id' => $order_id]);
-        $lignes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $lignes = $stmt->fetchall(PDO::FETCH_ASSOC);
 
         $detailCommandes = [];
 
-        foreach($lignes as $ligne){
+        foreach($lignes as $ligne)
+        {
             $detailCommandes[] = new DetailCommande(
+
                 $ligne['id'],
                 $ligne['order_id'],
                 $ligne['product_id'],
                 $ligne['quantity'],
                 $ligne['unit_price']
+
             );
         }
+
         return $detailCommandes;
+
+        
 
     }
 
