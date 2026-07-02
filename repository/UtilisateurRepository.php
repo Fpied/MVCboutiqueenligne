@@ -17,16 +17,29 @@ class UtilisateurRepository
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getByEmail($email)
+    public function getByEmail(string $email): ?Utilisateur
     {
         $stmt = $this->db->prepare("SELECT * FROM users WHERE email = :email");
         $stmt->execute(['email' => $email]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $userRow = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$userRow) {
+            return null;
+        }
+
+        return new Utilisateur(
+            (int)$userRow['id'],
+            (int)$userRow['name'],
+            $userRow['email'],
+            $userRow['password_hash'],
+            $userRow['role']
+        );
     }
 
     public function create($email, $password_hash)
     {
-        $stmt = $this->db->prepare("INSERT INTO users (email, password_hash) VALUES (?, ?)");
-        return $stmt->execute([$email, $password_hash]);
+        $stmt = $this->db->prepare("INSERT INTO users (email, password_hash) VALUES (:email, :password_hash )");
+        return $stmt->execute(['email' => $email,
+        'password_hash' => $password_hash]);
     }
 }

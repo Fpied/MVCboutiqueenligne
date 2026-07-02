@@ -13,7 +13,7 @@ class AdminController
             session_start();
         }
         if (!isset($_SESSION['admin'])) {
-            header("Location: login.php");
+            header("Location: index.php?route=login");
             exit();
         }
     }
@@ -79,13 +79,13 @@ class AdminController
     }
 }
 
-$admin = new AdminController();
-$action = $_GET['action'] ?? 'produits';
-if (method_exists($admin, $action)) {
-    $admin->$action();
-} else {
-    $admin->produits();
-}
-exit();
+// $admin = new AdminController();
+// $action = $_GET['action'] ?? 'produits';
+// if (method_exists($admin, $action)) {
+//     $admin->$action();
+// } else {
+//     $admin->produits();
+// }
+// exit();
 
 ?>
