@@ -21,14 +21,14 @@
 </form>
 
 <div class="produc_list">
-    <?php foreach ($products as product): ?>
+    <?php foreach ($products as $product): ?>
     <ul class="product">
 
         <h2><?= htmlspecialchars($product->getName()) ?></h2>
-        <p<?= htmlspecialchars($product->getDescription()) ?>></p>
+        <p><?= htmlspecialchars($product->getDescription()) ?>></p>
         <p><?= number_format($product->getPrice()) ?> €</p>
 
-        <form method="post">
+        <form method="post" action="index.php?page=ajout-panier">
             <input type="hidden" name="id" value="<?= $product->getId() ?>">
             <button type="submit">Ajouter au panier</button>
         </form>
