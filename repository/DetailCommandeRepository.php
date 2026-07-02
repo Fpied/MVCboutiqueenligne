@@ -18,7 +18,26 @@ class DetailCommandeRepository{
         return $stmt->execute([':order_id' => $order_id, ':product_id' => $product_id, ':quantity' => $quantity, ':unit_price' => $unit_price]);
     }
 
-    public function findByOrderId()
+    public function findByOrderId(int $order_id){
+        $sql = "SELECT * FROM order_items WHERE order_id = :order_id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([':order_id' => $order_id]);
+        $lignes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $detailCommandes = [];
+
+        foreach($lignes as $ligne){
+            $detailCommandes[] = new DetailCommande(
+                $ligne['id'],
+                $ligne['order_id'],
+                $ligne['product_id'],
+                $ligne['quantity'],
+                $ligne['unit_price']
+            );
+        }
+        return $detailCommandes;
+
+    }
 
     
 }
