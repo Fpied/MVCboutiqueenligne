@@ -8,7 +8,6 @@ require_once __DIR__ ."/../config/Database.php";
 class CommandeController
 {
     public function historique(){
-        session_start();
 
         if (!isset($_SESSION['user_id'])){
             header('Location: index.php?route=login');

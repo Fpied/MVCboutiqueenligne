@@ -9,13 +9,12 @@ class UtilisateurController
 
     public function __construct()
     {
-        session_start();
         $this->repo = new UtilisateurRepository();
     }
 
     public function login()
     {
-            $error = "";
+        $error = "";
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -37,16 +36,17 @@ class UtilisateurController
 
                 header("Location: index.php");
                 exit();
-    }}}
+            }
+            $error = "Email Ou Mot de pass Incorrect !";
+        }
+        require_once __DIR__ . "/../view/login.php";
+    }
 
 
     public function logout()
     {
-        session_start();
         session_destroy();
         header("Location: index.php");
         exit();
     }
 }
-
-?>
