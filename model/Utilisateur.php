@@ -1,11 +1,11 @@
 <?php
 
 class Utilisateur{
+
     public int $id;
     public string $email;
     public $password_hash;
     public string $role;
-
 
    public function __construct(int $id, string $email,float $password_hash, string $role)
     {
