@@ -1,7 +1,7 @@
 <?php
 include 'layout/header.php';
 $commandes = $commandes ?? [];
-
+$detailsParCommande = $detailsParCommande ?? [];
 ?>
 <main>
     <h1>Voici l'historique</h1>
@@ -16,14 +16,15 @@ $commandes = $commandes ?? [];
             <?= "prix : ". htmlspecialchars($commande->getTotal()).  "€" ?>
 
         </p>
-        <?php endforeach; ?>
+        
         <?php foreach ($detailsParCommande[$commande->getId()] as $detail) : ?>
-        <p>Detail: <?= htmlspecialchars($detail['name']) ?> X <?= htmlspecialchars($detail['quantity'])  ?> - <?= htmlspecialchars($detail['unit_price']) ?>€</p>
+       
+         <p>Detail: <?= htmlspecialchars($detail['name']) ?> X <?= htmlspecialchars($detail['quantity'])  ?> - <?= htmlspecialchars($detail['unit_price']) ?>€</p>
 
-            
+         <?php endforeach; ?>
         </li>
-    
-    <?php endforeach; ?>    
+    <?php endforeach; ?>
+        
     </ul>
 
 </main>
