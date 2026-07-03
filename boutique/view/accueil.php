@@ -25,7 +25,7 @@
         <p><?= htmlspecialchars($product->getDescription()) ?>></p>
         <p><?= number_format($product->getPrice(), 2, ",", " ") ?> €</p>
 
-        <form method="post" action="index.php?page=ajout-panier">
+        <form method="post" action="index.php?route=ajout-panier">
             <input type="hidden" name="id" value="<?= $product->getId() ?>">
             <button type="submit">Ajouter au panier</button>
         </form>

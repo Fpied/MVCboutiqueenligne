@@ -16,10 +16,10 @@
     <h2>Boutique en ligne</h2><!--nom de boutique à mettre ici-->
 
     <ul class="header__menu_list">
-        <li><a href="#">Accueil</a></li>
-        <li><a href="#">Nos produits</a></li>
-        <li><a href="#">à propos</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="index.php?route=accueil">Accueil</a></li>
+        <li><a href="index.php?route=accueil">Nos produits</a></li>
+        <li><a href="index.php?route=apropos">à propos</a></li>
+        <li><a href="index.php?route=contact">Contact</a></li>
     </ul>
 </nav>
 </header>

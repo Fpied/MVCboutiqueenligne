@@ -4,10 +4,10 @@
     <h3>Boutique en ligne</h3><!--nom de boutique à mettre ici-->
 
     <ul class="footer_liens">
-        <li><a href="#">Accueil</a></li>
-        <li><a href="#">Nos produits</a></li>
-        <li><a href="#">à propos</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="index.php?route=accueil">Accueil</a></li>
+        <li><a href="index.php?route=accueil">Nos produits</a></li>
+        <li><a href="index.php?route=apropos">à propos</a></li>
+        <li><a href="index.php?route=contact">Contact</a></li>
     </ul>
 </div>
 
