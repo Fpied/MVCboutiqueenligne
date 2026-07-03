@@ -9,11 +9,17 @@ class UtilisateurController
             session_start();
         }
 
+
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $email = $_POST['email'];
             $password = $_POST['password'];
 
+
             $userModel = new Utilisateur();
+
+            $userModel = new UtilisateurRepository();
+
             $user = $userModel->getByEmail($email);
 
             if ($user && password_verify($password, $user['password_hash'])) {
