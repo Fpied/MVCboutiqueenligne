@@ -8,7 +8,7 @@ class ProduitController { // création d'un classe pour la gestion des produits
         $this->repository = $repository;
     }
     public function index(): void {// on récupère les produits et on envoie à "view"
-        $produits = $this->repository->findAll();
+        $products = $this->repository->findAll();
         require "view/accueil.php";
     }
 }

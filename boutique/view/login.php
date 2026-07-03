@@ -8,7 +8,7 @@
 <body>
     <h1>Conexion</h1>
 
-    <form method="POST" action="index.php";>
+    <form method="POST" action="index.php?route=login";>
 
     <label>Email</label>
     <input type="email" name="email" required>

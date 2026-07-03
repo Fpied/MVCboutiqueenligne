@@ -11,7 +11,7 @@ class CommandeController
         session_start();
 
         if (!isset($_SESSION['user_id'])){
-            header('Location: index.php?controller=utilisateur&action=login');
+            header('Location: index.php?route=login');
             exit;
         }
 
@@ -20,11 +20,28 @@ class CommandeController
         $commandes = $commandeRepository->findByUserId($user_id);
         
         require_once __DIR__ ."/../view/historique.php";
+         $commandeRepository = new CommandeRepository();
+
+        // Test : utilisateur n°1
+        $commandes = $commandeRepository->findByUserId(1);
+
+        $detailCommandeRepository = new DetailCommandeRepository();
+
+        $detailsParCommande = [];
+
+        foreach ($commandes as $commande) {
+            $detailsParCommande[$commande->getId()] =
+                $detailCommandeRepository->findDetailsWithProductNameByOrderId($commande->getId());
+        }
+
+        require_once __DIR__ . "/../view/historique.php";
+
+        
     }
 
     public function panier(){
 
-        session_start();
+        // session_start();
 
         if(!isset($_SESSION['panier'])){
             $_SESSION['panier'] = [];
@@ -38,7 +55,7 @@ class CommandeController
     }
 
     public function ajouter(){
-        session_start();
+        // session_start();
 
         if(!isset($_SESSION['panier'])){
             $_SESSION['panier'] = [];
@@ -62,7 +79,7 @@ class CommandeController
             
         }
 
-        header('Location: index.php?page=panier');
+        header('Location: index.php?route=panier');
         exit;
 
 
@@ -70,7 +87,7 @@ class CommandeController
     }
 
     public function valider(){
-        session_start();
+        // session_start();
 
         if (!isset($_SESSION['user_id'])){
             header('Location: index.php?controller=utilisateur&action=login');
@@ -127,7 +144,7 @@ class CommandeController
 
         $_SESSION['panier'] = [];
 
-        header('Location: index.php?page=historique');
+        header('Location: index.php?route=historique');
         exit;
 
         

@@ -45,5 +45,24 @@ class DetailCommandeRepository{
 
     }
 
+    public function findDetailsWithProductNameByOrderId(int $order_id): array
+    {
+        $sql = "
+            SELECT 
+                order_items.quantity,
+                order_items.unit_price,
+                products.name
+            FROM order_items
+            INNER JOIN products 
+                ON order_items.product_id = products.id
+            WHERE order_items.order_id = :order_id
+        ";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([':order_id' => $order_id]);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     
 }
