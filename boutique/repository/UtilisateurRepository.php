@@ -30,17 +30,19 @@ class UtilisateurRepository
 
         return new Utilisateur(
             (int)$userRow['id'],
-            (int)$userRow['name'],
+            $userRow['name'],
             $userRow['email'],
             $userRow['password_hash'],
             $userRow['role']
         );
     }
 
-    public function create($email, $password_hash)
+    public function create($name, $email, $password_hash)
     {
-        $stmt = $this->db->prepare("INSERT INTO users (email, password_hash) VALUES (:email, :password_hash )");
-        return $stmt->execute(['email' => $email,
+        $stmt = $this->db->prepare("INSERT INTO users (name, email, password_hash) VALUES (:name, :email, :password_hash )");
+        return $stmt->execute([
+            'name' => $name,
+            'email' => $email,
         'password_hash' => $password_hash]);
     }
 }
