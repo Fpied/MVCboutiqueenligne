@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 class Router
@@ -14,8 +15,8 @@ class Router
         match ($route) {
             // 'accueil' => on crée le contrôleur et on appelle sa méthode index().
             'accueil' => (new ProduitController(new ProduitRepository(Database::getConnexion())))->index(),
-            'login'          => (new UtilisateurController())->login(),
-           //logout'         => (new UtilisateurController())->logout(),
+            'login'          => (new UtilisateurController(Database::getConnexion()))->login(),
+            'logout'         => (new UtilisateurController(Database::getConnexion()))->logout(),
             'panier'         => (new CommandeController())->panier(),
             'ajout-panier'   => (new CommandeController())->ajouter(),
             'valider'        => (new CommandeController())->valider(),
