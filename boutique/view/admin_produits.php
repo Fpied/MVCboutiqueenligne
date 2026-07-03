@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -23,6 +24,31 @@
     <textarea name="description" required></textarea><br><br>
 
     <button type="submit">Ajouter</button>
+=======
+<?php
+
+include 'layout/header.php';
+
+?>
+<body>
+    
+
+<h3>Gestion des Produits</h3>
+
+<h3>Ajouter un produit</h3>
+
+<form class="ul__li" method="POST" action="index.php?route=admin">
+    <label>Nom :</label><br>
+    <input class="form__input" type="text" name="name" required><br><br>
+
+    <label>Prix :</label><br>
+    <input class="form__input" type="number" step="0.01" name="price" required><br><br>
+
+    <label>Description :</label><br>
+    <textarea class="form__input" name="description" required></textarea><br><br>
+
+    <button class="form__envoyer" type="submit">Ajouter</button>
+>>>>>>> refs/remotes/origin/master
 </form>
 
 <hr>
@@ -61,5 +87,9 @@
     <p>Aucun produit trouvé.</p>
 <?php endif; ?>
 
+<<<<<<< HEAD
 </body>
 </html>
+=======
+<?php require __DIR__ . "/../view/layout/footer.php" ?>
+>>>>>>> refs/remotes/origin/master

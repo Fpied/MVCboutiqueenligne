@@ -4,13 +4,13 @@ $commandes = $commandes ?? [];
 $detailsParCommande = $detailsParCommande ?? [];
 ?>
 <main>
-    <h1>Voici l'historique</h1>
+    <h3>Voici l'historique</h3>
     <?php if (empty($commandes)) : ?>
         <p>Aucune commande passé</p>
     <?php endif; ?>
     <ul>
     <?php foreach($commandes as $commande) : ?>
-        <li><p>
+        <li class="ul__li"><p class="list__p">
             Commande n°<?= htmlspecialchars($commande->getId()) ?>
             <?= "date ". htmlspecialchars($commande->getCreated_at()) ?>
             <?= "prix : ". htmlspecialchars($commande->getTotal()).  "€" ?>
@@ -19,7 +19,7 @@ $detailsParCommande = $detailsParCommande ?? [];
         
         <?php foreach ($detailsParCommande[$commande->getId()] as $detail) : ?>
        
-         <p>Detail: <?= htmlspecialchars($detail['name']) ?> X <?= htmlspecialchars($detail['quantity'])  ?> - <?= htmlspecialchars($detail['unit_price']) ?>€</p>
+         <p class="list__p">Detail: <?= htmlspecialchars($detail['name']) ?> X <?= htmlspecialchars($detail['quantity'])  ?> - <?= htmlspecialchars($detail['unit_price']) ?>€</p>
 
          <?php endforeach; ?>
         </li>

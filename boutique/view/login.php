@@ -1,30 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
-</head>
+<?php
+include 'layout/header.php';
+?>
 <body>
-    <h1>Conexion</h1>
+    <h3>Conexion</h3>
 
-    <form method="POST" action="index.php?route=login";>
+    <form class="ul__li" method="POST" action="index.php?route=login";>
 
     <label>Email</label>
-    <input type="email" name="email" required>
+    <input class="form__input" type="email" name="email" required>
 
     <label>Mots de passe</label>
-    <input type="password" name="password" required>
+    <input class="form__input" type="password" name="password" required>
 
     <?php if (!empty($error)) : ?>
         <p style="color:red;"><?= $error ?>
         <?php endif; ?>
 
-        <button type="submit">Connexion</button>
+        <button class="form__envoyer" type="submit">Connexion</button>
 
     </form>
 
+<?php require __DIR__ . "/../view/layout/footer.php" ?>
 
-
-</body>
-</html>

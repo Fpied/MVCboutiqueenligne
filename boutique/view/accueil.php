@@ -6,7 +6,7 @@ include 'layout/header.php';
 ?>
 <body>
 
-<h1>Nos Produits</h1>
+<h3>Nos Produits</h3>
 
 <form method="get">
 

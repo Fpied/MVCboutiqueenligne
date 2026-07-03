@@ -1,3 +1,145 @@
+/* Déclaration des police */
+@font-face {
+    font-family: 'AppleGaramond';
+    src: url('font/AppleGaramond.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AppleGaramond';
+    src: url('font/AppleGaramond-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AppleGaramond';
+    src: url('font/AppleGaramond-Italic.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'AppleGaramond';
+    src: url('font/AppleGaramond-BoldItalic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'AppleGaramond';
+    src: url('font/AppleGaramond-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AppleGaramond';
+    src: url('font/AppleGaramond-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
 *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --chocolat : #2C1A0E;
+    --or : #C9A84C;
+    --creme_ivoire : #F5ECD7;
+    --terracottaBordeau: #6B3A2A;
+}
+
+.body{
+    font-family: "AppleGaramond", sans-serif;
+    background: var(--creme_ivoire);
+    color: var(--terracottaBordeau);
+    line-height: 1.7;
+    width: 100%;
     text-align: center;
+}
+
+h1{
+    font-size: clamp(2.5rem, 8vw, 7rem);
+    color: red;
+}
+.ul__li{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+    padding: 40px;
+    background-color: var(--chocolat);
+    width: min(90%, 1100px);
+
+    margin: 0 auto;
+    color: var(--or);
+    /* clamp est une fonction CSS qui permet de définir une valeur minimum, une valeur idéale et une valeur maximum */
+    font-size: clamp(1.1rem, 2vw, 2rem);
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+a{
+    text-decoration: none;
+    color: var(--or);
+}
+.a__sorti__deboite{
+    display: block;
+    margin-top: 50px;
+    padding: 20px;
+    font-size: 2rem;
+}
+
+.form__input{
+    border: 5px solid var(--or);
+    border-radius: 3px;
+    font-family: "AppleGaramond", sans-serif;
+    font-size: 2rem;
+    padding-left: 10px;
+    width: 100%;
+    max-width: 450px;
+}
+
+.form__envoyer{
+    padding: 10px;
+    background-color: var(--or);
+    color: var(--chocolat);
+    font-size: 1.5rem;
+}
+.table{
+    margin: 0 auto;
+}
+
+@media (max-width: 768px){
+
+    h1{
+        font-size: 3rem;
+    }
+
+    .ul__li{
+        flex-direction: column;
+        gap: 10px;
+        padding: 20px;
+        width: 95%;
+        font-size: 1.3rem;
+    }
+
+    .a__sorti__deboite{
+        font-size: 1.5rem;
+    }
+
+    .form__input{
+        width: 90%;
+        font-size: 1.2rem;
+    }
+
+    .form__envoyer{
+        font-size: 1.2rem;
+    }
+
 }
