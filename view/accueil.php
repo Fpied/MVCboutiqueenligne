@@ -8,13 +8,6 @@ require __DIR__ . "/view/panier.php";
 ?>
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TP Boutique en locale</title>
-</head>
 
 <?php require __DIR__ . "/view/layout/header.php"; ?>
 
@@ -54,7 +47,7 @@ require __DIR__ . "/view/panier.php";
 <?php require __DIR__ . "/../view/layout/footer.php" ?>
 
 </body>
-</html>
+
 
 
 
