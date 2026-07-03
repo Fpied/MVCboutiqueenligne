@@ -12,7 +12,7 @@ class ProduitRepository{
 
     public function findAll(): array {// on récupère tous les produits
                                       //sous forme d'un tableau associatif  
-    $stmt = $this->pdo->query("SELECT * FROM produits");
+    $stmt = $this->pdo->query("SELECT * FROM products");
     $rows = $stmt-> fetchAll(PDO::FETCH_ASSOC);
 
     $produits = [];
@@ -29,7 +29,7 @@ class ProduitRepository{
 
     public function findById(int$id): ?Produit {// on récupère un produit par son id
         
-        $stmt = $this->pdo->prepare("SELECT * FROM produits WHERE id = ?");
+        $stmt = $this->pdo->prepare("SELECT * FROM products WHERE id = ?");
         $stmt->execute([$id]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);// on prépare, exécute, récupère 
 
@@ -44,7 +44,7 @@ class ProduitRepository{
     }
 
     public function create(Produit $p): void {// on met à jour le produit
-        $stmt = $this->pdo->prepare("UPDATE produits SET name = ?, description = ?, price = ?
+        $stmt = $this->pdo->prepare("UPDATE products SET name = ?, description = ?, price = ?
         WHERE id = ?");
 
     $stmt->execute([ //on met les valeurs à jour
@@ -56,7 +56,7 @@ class ProduitRepository{
 
     }
     public function delete(int $id): void{ // on supprime grâce à l'id
-        $stmt = $this->pdo->prepare("DELETE FROM produits WHERE id = ?");
+        $stmt = $this->pdo->prepare("DELETE FROM products WHERE id = ?");
         $stmt->execute([$id]);
     }
 

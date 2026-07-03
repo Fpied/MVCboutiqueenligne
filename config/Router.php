@@ -1,35 +1,37 @@
 <?php
-class Router{
+declare(strict_types=1);
 
-    public function run(){
+class Router
+{
+    public function route(): void
+    {
+        // $_GET = tableau des paramètres passés dans l'URL (après le ?).
+        // ?? 'accueil' = opérateur "null coalescent" : si 'route' n'existe pas, on utilise 'accueil'.
+        $route = $_GET['route'] ?? 'accueil';
 
-        // 1. Récupération des paramètre URL
-        $controller = $_GET['controller'] ?? 'user';
-        $action = $_GET['action'] ?? 'index';
+        // On aiguille selon la valeur de $route.
+        // match = version moderne du switch (PHP 8+), plus stricte et concise.
+        match ($route) {
+            // 'accueil' => on crée le contrôleur et on appelle sa méthode index().
+            'accueil' => (new ProduitController(new ProduitRepository(Database::getConnexion())))->index(),
+            'login'          => (new UtilisateurController())->login(),
+           //logout'         => (new UtilisateurController())->logout(),
+            'panier'         => (new CommandeController())->panier(),
+            'ajout-panier'   => (new CommandeController())->ajouter(),
+            'valider'        => (new CommandeController())->valider(),
+            'historique'     => (new CommandeController())->historique(),
+            'admin'          => (new AdminController())->produits(),
 
-        // 2. nom du contrôleur
-        $controllerName = ucfirst($controller) . "Controller";
+            // default = cas par défaut si aucune route ne correspond → page 404.
+            default          => $this->notFound(),
+        };
+    }
 
-        // 3. Chemin du fichier
-        $controllerFile = "../controller/" . $controllerName . ".php";
-
-        // 4. Vérifier si le fichier existe
-        if(!file_exists($controllerFile)){
-            die("Contrôleur introuvable");
-
-        }
-
-        require_once $controllerFile;
-
-        // 5. Instanciation
-        $controllerObject = new $controllerName();
-
-        // 6. Vérifier si la méthode existe
-        if(!method_exists($controllerObject, $action)){
-            die("Action inexistante");
-        }
-
-        // 7. Appel de la méthode
-        $controllerObject->$action();
+    // Méthode privée : gère le cas "route inconnue".
+    private function notFound(): void
+    {
+        // http_response_code = définit le code HTTP renvoyé (404 = page non trouvée).
+        http_response_code(404);
+        echo '404 - Page non trouvée';
     }
 }
