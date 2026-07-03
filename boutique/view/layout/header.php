@@ -18,11 +18,11 @@
     <ul class="header__menu_list">
         <li><a href="#">Accueil</a></li>
         <li><a href="#">Nos produits</a></li>
-        <li><a href="#">à propos</a></li>
         <li><a href="#">Contact</a></li>
     </ul>
 </nav>
 </header>
+
 
 
 </body>

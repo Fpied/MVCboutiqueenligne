@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TP Boutique en locale</title>
 </head>
+
+<?php require __DIR__ . "/view/layout/header.php"; ?>
+
 <body>
 
 <h1>Nos Produits</h1>
@@ -18,6 +21,7 @@
 </form>
 
 <div class="produc_list">
+    <?php if(!empty($products)): ?>
     <?php foreach ($products as $product): ?>
     <ul class="product">
 
@@ -31,11 +35,15 @@
         </form>
     </ul>
     <?php endforeach; ?>
+    <?php else: ?>
+        <p>Aucun produit trouvé.</p>
+    <?php endif; ?>
+
     <a href="index.php?route=historique">historique</a>
 </div>
 
 </body>
-</html>
+
 
 <?php require __DIR__ . "/../view/layout/footer.php" ?>
 
