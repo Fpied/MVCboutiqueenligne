@@ -15,7 +15,7 @@
         <p>140 avenue Bollée</p>
         <p>La Roche sur Yon</p>
         <a href="tél:0800123456">tél : 0800 123 456</a>
-        <a href="boutiqueenligne@mail.mail"></a>
+        <a href="boutiqueenligne@mail.mail">boutiqueenligne@mail.mail</a>
     </address>
 
     
