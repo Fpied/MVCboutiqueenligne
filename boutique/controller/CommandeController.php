@@ -8,7 +8,6 @@ require_once __DIR__ ."/../config/Database.php";
 class CommandeController
 {
     public function historique(){
-        
 
         if (!isset($_SESSION['user_id'])){
             header('Location: index.php?route=login');
@@ -18,11 +17,6 @@ class CommandeController
         $commandeRepository = new CommandeRepository();
         $user_id = $_SESSION['user_id'];
         $commandes = $commandeRepository->findByUserId($user_id);
-        
-         $commandeRepository = new CommandeRepository();
-
-        // Test : utilisateur n°1
-        $commandes = $commandeRepository->findByUserId(1);
 
         $detailCommandeRepository = new DetailCommandeRepository();
 
