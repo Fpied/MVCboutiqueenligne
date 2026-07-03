@@ -1,14 +1,9 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TP Boutique en locale</title>
-</head>
+<?php
 
-<?php require __DIR__ . "/view/layout/header.php"; ?>
+include 'layout/header.php';
 
+?>
 <body>
 
 <h1>Nos Produits</h1>

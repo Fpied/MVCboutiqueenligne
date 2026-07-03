@@ -8,7 +8,7 @@ class Database{
             self::$instance = new PDO(
                 'mysql:host=localhost;dbname=boutique_en_ligne;charset=utf8mb4',
                 'root',
-                'root',
+                '',
                 [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
             );
         }
