@@ -5,7 +5,6 @@ require __DIR__ . "/view/login.php";
 require __DIR__ . "/view/historique.php";
 require __DIR__ . "/view/panier.php";
 
-
 ?>
 
 
@@ -16,7 +15,12 @@ require __DIR__ . "/view/panier.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TP Boutique en locale</title>
 </head>
+
+<?php require __DIR__ . "/view/layout/header.php"; ?>
+
 <body>
+
+
 
 <h1>Nos Produits</h1>
 
@@ -28,25 +32,31 @@ require __DIR__ . "/view/panier.php";
 </form>
 
 <div class="produc_list">
+    <?php if(!empty($products)): ?>
     <?php foreach ($products as $product): ?>
-    <ul class="product">
+    <div class="product">
 
         <h2><?= htmlspecialchars($product->getName()) ?></h2>
-        <p><?= htmlspecialchars($product->getDescription()) ?>></p>
+        <p><?= htmlspecialchars($product->getDescription()) ?></p>
         <p><?= number_format($product->getPrice(), 2, ",", " ") ?> €</p>
 
         <form method="post" action="index.php?page=ajout-panier">
             <input type="hidden" name="id" value="<?= $product->getId() ?>">
             <button type="submit">Ajouter au panier</button>
         </form>
-    </ul>
+    </div>
     <?php endforeach; ?>
+    <?php else: ?>
+        <p>Aucun produit trouvé.</p>
+    <?php endif; ?>
 </div>
+
+<?php require __DIR__ . "/../view/layout/footer.php" ?>
 
 </body>
 </html>
 
-<?php require __DIR__ . "/../view/layout/footer.php" ?>
+
 
 
 
