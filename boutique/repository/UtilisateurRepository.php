@@ -30,7 +30,6 @@ class UtilisateurRepository
 
         return new Utilisateur(
             (int)$userRow['id'],
-            $userRow['name'],
             $userRow['email'],
             $userRow['password_hash'],
             $userRow['role']
