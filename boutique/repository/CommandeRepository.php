@@ -15,7 +15,11 @@ class CommandeRepository{
     public function createOrder(int $user_id,string $created_at, int $total){
         $sql = "INSERT INTO orders(user_id, created_at, total) VALUES (:user_id, :created_at, :total)";
         $stmt = $this->pdo->prepare($sql);
-        return $stmt->execute([':user_id' => $user_id, ':created_at' => $created_at, ':total' => $total ]);
+        if($stmt->execute([':user_id' => $user_id, ':created_at' => $created_at, ':total' => $total ])){
+            return $this->pdo->lastInsertId();
+        }
+
+        return false;
 
     }
 
@@ -33,7 +37,7 @@ class CommandeRepository{
 
         );
     }
-
+    
     public function findByUserId(int $user_id)
     {
         $sql = "SELECT * FROM orders WHERE user_id= :user_id";

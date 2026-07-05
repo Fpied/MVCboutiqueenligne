@@ -6,7 +6,7 @@ class Database{
     public static function getConnexion() : PDO{
         if(self::$instance === null){
             self::$instance = new PDO(
-                'mysql:host=localhost;dbname=MVCboutiqueenligne;charset=utf8mb4',
+                'mysql:host=localhost;dbname=boutique_en_ligne;charset=utf8mb4',
                 'root',
                 '',
                 [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
