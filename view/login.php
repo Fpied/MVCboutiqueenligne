@@ -13,7 +13,8 @@ include 'layout/header.php';
     <input class="form__input" type="password" name="password" required>
 
     <?php if (!empty($error)) : ?>
-        <p style="color:red;"><?= $error ?>
+        <p style="color:red;">
+        <? htmlspecialchars($error) ?></p>
         <?php endif; ?>
 
         <button class="form__envoyer" type="submit">Connexion</button>
