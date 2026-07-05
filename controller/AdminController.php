@@ -1,34 +1,24 @@
 <?php
 require_once __DIR__ . "/../config/Database.php";
-require_once __DIR__ . "/../model/Commande.php";
-require_once __DIR__ . "/../model/DetailCommande.php";
 require_once __DIR__ . "/../model/Produit.php";
-require_once __DIR__ . "/../model/Utilisateur.php";
+require_once __DIR__ . "/../repository/ProduitRepository.php";
 
 class AdminController
 {
+    private ProduitRepository $repo;
+
     public function __construct()
     {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
         if (!isset($_SESSION['admin'])) {
-            header("Location: login.php");
+            header("Location: index.php?route=login");
             exit();
         }
-    }
-
-    public function commande()
-    {
-        $cmd = new Commande();
-        $commandes = $cmd->getAll();
-        require __DIR__ . "/../view/historique.php";
+        $this->repo = new ProduitRepository(Database::getConnexion());
     }
 
     public function produits()
     {
-        $prod = new Produit();
-        $produits = $prod->getAll();
+        $produits = $this->repo->findAll();
         require __DIR__ . "/../view/admin_produits.php";
     }
 
@@ -36,56 +26,46 @@ class AdminController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $name = $_POST['name'];
-            $price = $_POST['Price'];
+            $price = (float)$_POST['price'];
             $description = $_POST['description'];
-            $prod = new Produit();
-            $prod->insert($name, $price, $description);
-            header("Location: index.php");
+
+            $produit = new Produit(0, $name, $description, $price);
+            $this->repo->create($produit);
+
+            header("Location: index.php?route=admin");
             exit();
         }
+        $produits = $this->repo->findAll();
         require __DIR__ . "/../view/admin_produits.php";
     }
 
     public function suprimmerProduit()
     {
         $id = (int)$_GET['id'];
-        $prod = new Produit();
-        $prod->delete($id);
-        header("Location: index.php");
+        $this->repo->delete($id);
+        header("Location: index.php?route=admin");
         exit();
     }
 
     public function modifierProduit()
     {
         $id = (int)$_GET['id'];
-        $prod = new Produit();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $name = $_POST['name'];
-            $price = $_POST['price'];
+            $price = (float)$_POST['price'];
             $description = $_POST['description'];
-            $prod->update($id, $name, $price, $description);
-            header("Location: index.php");
+
+            $produit = new Produit($id, $name, $description, $price);
+            $this->repo->update($produit);
+
+            header("Location: index.php?route=admin");
             exit();
         }
-        $produit = $prod->getById($id);
+
+        $produit = $this->repo->findById($id);
+        $produits = $this->repo->findAll();
         require __DIR__ . "/../view/admin_produits.php";
     }
-
-    public function utilisateur()
-    {
-        $user = new Utilisateur();
-        $users = $user->getAll();
-        require __DIR__ . "/../view/admin_utilisateurs.php";
-    }
 }
-
-$admin = new AdminController();
-$action = $_GET['action'] ?? 'produits';
-if (method_exists($admin, $action)) {
-    $admin->$action();
-} else {
-    $admin->produits();
-}
-exit();
-
 ?>
