@@ -30,14 +30,16 @@ class UtilisateurController
             if ($user && password_verify($password, $user->password_hash)) {
 
 
-                if ($user->role === 'ADMIN') {
+                if ($user->role === 'admin') {
                     $_SESSION['admin'] = true;
+                    header("Location: index.php?controller=admin&action=produits");
+                    exit();
                 }
 
                 $_SESSION['user_id'] = $user->id;
                 $_SESSION['user_email'] = $user->email;
 
-                header("Location: index.php?route=admin");
+                header("Location: index.php");
                 exit();
             }
             $error = "Email Ou Mot de pass Incorrect !";
@@ -53,4 +55,3 @@ class UtilisateurController
         exit();
     }
 }
-?>
