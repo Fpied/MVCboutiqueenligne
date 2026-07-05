@@ -37,7 +37,6 @@ class UtilisateurRepository
         );
     }
 
-<<<<<<< HEAD:repository/UtilisateurRepository.php
 
     public function create(string $name, string $email, string $password_hash): bool
     {
@@ -49,15 +48,16 @@ class UtilisateurRepository
             'email' => $email,
             'password_hash' => $password_hash
         ]);
-=======
+
     public function create($name, $email, $password_hash)
+
     {
-        $stmt = $this->db->prepare("INSERT INTO users (name, email, password_hash) VALUES (:name, :email, :password_hash )");
+        $stmt = $this->db->prepare("INSERT INTO users (name, email, password_hash)
+        VALUES (:name, :email, :password_hash)");
         return $stmt->execute([
             'name' => $name,
             'email' => $email,
         'password_hash' => $password_hash]);
->>>>>>> master:boutique/repository/UtilisateurRepository.php
     }
 }
 ?>
