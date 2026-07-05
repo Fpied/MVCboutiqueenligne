@@ -1,24 +1,12 @@
+
 <?php
 
-require __DIR__ . "/view/admin_produits.php";
-require __DIR__ . "/view/login.php";
-require __DIR__ . "/view/historique.php";
-require __DIR__ . "/view/panier.php";
-
+include 'layout/header.php';
 
 ?>
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TP Boutique en locale</title>
-</head>
 <body>
 
-<h1>Nos Produits</h1>
+<h3>Nos Produits</h3>
 
 <form method="get">
 
@@ -28,6 +16,7 @@ require __DIR__ . "/view/panier.php";
 </form>
 
 <div class="produc_list">
+    <?php if(!empty($products)): ?>
     <?php foreach ($products as $product): ?>
     <ul class="product">
 
@@ -35,16 +24,21 @@ require __DIR__ . "/view/panier.php";
         <p><?= htmlspecialchars($product->getDescription()) ?>></p>
         <p><?= number_format($product->getPrice(), 2, ",", " ") ?> €</p>
 
-        <form method="post" action="index.php?page=ajout-panier">
+        <form method="post" action="index.php?route=ajout-panier">
             <input type="hidden" name="id" value="<?= $product->getId() ?>">
             <button type="submit">Ajouter au panier</button>
         </form>
     </ul>
     <?php endforeach; ?>
+    <?php else: ?>
+        <p>Aucun produit trouvé.</p>
+    <?php endif; ?>
+
+    <a href="index.php?route=historique">historique</a>
 </div>
 
 </body>
-</html>
+
 
 <?php require __DIR__ . "/../view/layout/footer.php" ?>
 

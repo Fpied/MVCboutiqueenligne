@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 class Router
@@ -15,11 +16,15 @@ class Router
             // 'accueil' => on crée le contrôleur et on appelle sa méthode index().
             'accueil' => (new ProduitController(new ProduitRepository(Database::getConnexion())))->index(),
             'login'          => (new UtilisateurController())->login(),
-           //logout'         => (new UtilisateurController())->logout(),
+            'logout'         => (new UtilisateurController())->logout(),
             'panier'         => (new CommandeController())->panier(),
             'ajout-panier'   => (new CommandeController())->ajouter(),
             'valider'        => (new CommandeController())->valider(),
             'historique'     => (new CommandeController())->historique(),
+            'plus-panier'   => (new CommandeController())->plusPanier(),
+            'moins-panier'  => (new CommandeController())->moinsPanier(),
+            'supprimer-panier' => (new CommandeController())->supprimerPanier(),
+            'vider-panier' => (new CommandeController())->viderPanier(),
             'admin'          => (new AdminController())->produits(),
 
             // default = cas par défaut si aucune route ne correspond → page 404.
