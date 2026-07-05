@@ -17,12 +17,6 @@ class CommandeController
         $commandeRepository = new CommandeRepository();
         $user_id = $_SESSION['user_id'];
         $commandes = $commandeRepository->findByUserId($user_id);
-        
-        require_once __DIR__ ."/../view/historique.php";
-         $commandeRepository = new CommandeRepository();
-
-        // Test : utilisateur n°1
-        $commandes = $commandeRepository->findByUserId(1);
 
         $detailCommandeRepository = new DetailCommandeRepository();
 
@@ -41,17 +35,89 @@ class CommandeController
     public function panier(){
 
         // session_start();
+        $pdo = Database::getConnexion();
 
         if(!isset($_SESSION['panier'])){
             $_SESSION['panier'] = [];
         }
 
         $panier = $_SESSION['panier'];
+        $repositoryProduit = new ProduitRepository($pdo);
+        $lignes = [];
+        $total = 0;
+        foreach($panier as $product_id => $quantity){
+            $produit = $repositoryProduit->findById($product_id);
+            if($produit !== null){
+                    $totalLigne = $produit->getPrice() * $quantity;
+
+                    $lignes[] = [
+                        'id'=> $product_id,
+                    'nom' => $produit->getName(),
+                    'quantite' => $quantity,
+                    'prix' => $produit->getPrice(),
+                    'total_ligne' => $totalLigne
+                ];
+
+                $total += $totalLigne;
+                
+
+            }
+            
+
+
+        }
+
+
 
         require_once __DIR__ ."/../view/panier.php";
 
 
     }
+
+    public function plusPanier()
+    {
+        $id = $_GET['id'];
+
+        $_SESSION['panier'][$id]++;
+
+        header('Location: index.php?route=panier');
+        exit;
+    }
+
+    public function moinsPanier()
+    {
+        $id = $_GET['id'];
+
+        $_SESSION['panier'][$id]--;
+
+        if ($_SESSION['panier'][$id] <= 0) {
+            unset($_SESSION['panier'][$id]);
+        }
+
+        header('Location: index.php?route=panier');
+        exit;
+    }
+
+    public function supprimerPanier()
+    {
+        $id = $_GET['id'];
+        unset($_SESSION['panier'][$id]);
+
+        header('Location: index.php?route=panier');
+        exit;
+    }
+
+    public function viderPanier()
+    {
+        $_SESSION['panier'] = [];
+
+        header('Location: index.php?route=panier');
+        exit;
+    }
+
+
+
+
 
     public function ajouter(){
         // session_start();

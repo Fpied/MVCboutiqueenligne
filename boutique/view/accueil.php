@@ -1,17 +1,12 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TP Boutique en locale</title>
-</head>
+<?php
 
-<?php require __DIR__ . "/view/layout/header.php"; ?>
+include 'layout/header.php';
 
+?>
 <body>
 
-<h1>Nos Produits</h1>
+<h3>Nos Produits</h3>
 
 <form method="get">
 
@@ -29,7 +24,7 @@
         <p><?= htmlspecialchars($product->getDescription()) ?>></p>
         <p><?= number_format($product->getPrice(), 2, ",", " ") ?> €</p>
 
-        <form method="post" action="index.php?page=ajout-panier">
+        <form method="post" action="index.php?route=ajout-panier">
             <input type="hidden" name="id" value="<?= $product->getId() ?>">
             <button type="submit">Ajouter au panier</button>
         </form>
