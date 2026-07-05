@@ -72,4 +72,3 @@ class AdminController
         require __DIR__ . "/../view/admin_produits.php";
     }
 }
-?>
