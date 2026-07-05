@@ -29,3 +29,4 @@ class Utilisateur
     public function setPassword_hash(string $password_hash): void { $this->password_hash = $password_hash; }
     public function setRole(string $role): void { $this->role = $role; }
 }
+?>
