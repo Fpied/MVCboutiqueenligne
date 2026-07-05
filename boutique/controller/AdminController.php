@@ -41,7 +41,12 @@ class AdminController
 
     public function suprimmerProduit()
     {
-        $id = (int)$_GET['id'];
+        if (!isset($_GET['id'])) {
+            header("Location: index.php?route=admin");
+            exit();
+        }
+
+        $id = (int) $_GET['id'];
         $this->repo->delete($id);
         header("Location: index.php?route=admin");
         exit();
@@ -68,4 +73,3 @@ class AdminController
         require __DIR__ . "/../view/admin_produits.php";
     }
 }
-?>
