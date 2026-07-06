@@ -49,12 +49,17 @@ class AdminController
         exit();
     }
 
-    public function suprimmerProduit()
+    public function supprimerProduit(): void
     {
-        $id = (int)$_GET['id'];
-        $this->repo->delete($id);
-        header("Location: index.php?route=admin");
-        exit();
+        $id = (int)($_GET['id'] ?? 0);
+
+        if ($id > 0) {
+            $repo = new ProduitRepository(Database::getConnexion());
+            $repo->supprimer($id);
+        }
+
+        header('Location: index.php?route=admin');
+        exit;
     }
 
     public function modifierProduit()

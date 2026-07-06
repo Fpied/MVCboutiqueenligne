@@ -62,4 +62,11 @@ class ProduitRepository
         $stmt = $this->pdo->prepare("DELETE FROM products WHERE id = ?");
         $stmt->execute([$id]);
     }
+
+    public function supprimer(int $id): void
+    {
+        $sql = "DELETE FROM products WHERE id = :id";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['id' => $id]);
+    }
 }

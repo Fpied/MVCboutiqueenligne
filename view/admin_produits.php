@@ -48,10 +48,7 @@ include 'layout/header.php';
                     <td>
                         <a href="index.php?route=modifierProduit&id=<?= $p->getId() ?>">Modifier</a>
 |
-                        <a href="index.php?route=suprimmerProduit&id=<?= $p->getId() ?>"
-                        onclick="return confirm('Supprimer ce produit ?');">
-                        Supprimer
-                        </a>
+                        <a href="index.php?route=supprimerProduit&id=<?= $p->getId() ?>" onclick="return confirm('Supprimer ce produit ?');">Supprimer</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
