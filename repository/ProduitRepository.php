@@ -49,14 +49,12 @@ class ProduitRepository
 
     public function create(Produit $p): void
     { // on met à jour le produit
-        $stmt = $this->pdo->prepare("UPDATE products SET name = ?, description = ?, price = ?
-        WHERE id = ?");
+        $stmt = $this->pdo->prepare("INSERT INTO products (name, description, price) VALUES (?, ? , ?)");
 
         $stmt->execute([ //on met les valeurs à jour
             $p->getName(),
             $p->getDescription(),
             $p->getPrice(),
-            $p->getId()
         ]);
     }
     public function delete(int $id): void

@@ -11,7 +11,7 @@ include 'layout/header.php';
 
     <h3>Ajouter un produit</h3>
 
-    <form class="ul__li" method="POST" action="index.php?route=admin">
+    <form class="form_adminproduit" method="POST" action="index.php?route=ajouterProduit">
         <label>Nom :</label><br>
         <input class="form__input" type="text" name="name" required><br><br>
 
@@ -21,7 +21,7 @@ include 'layout/header.php';
         <label>Description :</label><br>
         <textarea class="form__input" name="description" required></textarea><br><br>
 
-        <button class="form__envoyer" type="submit">Ajouter</button>
+        <button class="form__produit" type="submit">Ajouter</button>
 
     </form>
 
@@ -30,7 +30,7 @@ include 'layout/header.php';
     <h2>Liste des produits</h2>
 
     <?php if (!empty($produits)) : ?>
-        <table border="1" cellpadding="10" cellspacing="0">
+        <table class="body__list table" border="1" cellpadding="10" cellspacing="0">
             <tr>
                 <th>ID</th>
                 <th>Nom</th>
@@ -41,16 +41,16 @@ include 'layout/header.php';
 
             <?php foreach ($produits as $p) : ?>
                 <tr>
-                    <td><?= $p['id'] ?></td>
-                    <td><?= htmlspecialchars($p['name']) ?></td>
-                    <td><?= htmlspecialchars($p['description']) ?></td>
-                    <td><?= number_format($p['price'], 2) ?> €</td>
+                    <td><?= htmlspecialchars((string)$p->getId()) ?></td>
+                    <td><?= htmlspecialchars($p->getName()) ?></td>
+                    <td><?= htmlspecialchars($p->getDescription()) ?> €</td>
+                    <td><?= number_format($p->getPrice(), 2) ?></td>
                     <td>
-                        <a href="index.php?route=modifierProduit&id=<?= $p['id'] ?>">Modifier</a>
-                        |
-                        <a href="index.php?route=suprimmerProduit&id=<?= $p['id'] ?>"
-                            onclick="return confirm('Supprimer ce produit ?');">
-                            Supprimer
+                        <a href="index.php?route=modifierProduit&id=<?= $p->getId() ?>">Modifier</a>
+|
+                        <a href="index.php?route=suprimmerProduit&id=<?= $p->getId() ?>"
+                        onclick="return confirm('Supprimer ce produit ?');">
+                        Supprimer
                         </a>
                     </td>
                 </tr>

@@ -71,7 +71,6 @@ h1{
     display: flex;
     justify-content: center;
     gap: 20px;
-
     padding: 40px;
     background-color: var(--chocolat);
     width: min(90%, 1100px);
@@ -113,6 +112,14 @@ a{
 }
 .table{
     margin: 0 auto;
+}
+
+.form__produit{
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: var(--or);
+    color: var(--chocolat);
+    font-size: 1.5rem;
 }
 
 @media (max-width: 768px){

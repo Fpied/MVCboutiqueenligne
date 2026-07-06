@@ -9,6 +9,7 @@ class AdminController
 
     public function __construct()
     {
+        
         if (!isset($_SESSION['admin'])) {
             header("Location: index.php?route=login");
             exit();
@@ -19,24 +20,33 @@ class AdminController
     public function produits()
     {
         $produits = $this->repo->findAll();
+        
         require __DIR__ . "/../view/admin_produits.php";
     }
 
     public function ajouterProduit()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $name = $_POST['name'];
-            $price = (float)$_POST['price'];
-            $description = $_POST['description'];
+            $name = trim($_POST['name'] ?? '');
+            $price = (float)$_POST['price'] ?? '';
+            $description = trim($_POST['description'] ?? '');
 
-            $produit = new Produit(0, $name, $description, $price);
+            if($name === '' || $description === '' || $price === ''){
+                die("Tous les champs sont obligatoiire.");
+            }
+
+            if(!is_numeric($price) || (float)$price <= 0){
+                die("Le prix doit être un nombre supérieur à 0 .");
+            }
+
+            $produit = new Produit(0, $name, $description, (float)$price);
             $this->repo->create($produit);
 
             header("Location: index.php?route=admin");
             exit();
         }
-        $produits = $this->repo->findAll();
-        require __DIR__ . "/../view/admin_produits.php";
+        header("Location: index.php?route=admin");
+        exit();
     }
 
     public function suprimmerProduit()

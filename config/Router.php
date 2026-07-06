@@ -26,6 +26,7 @@ class Router
             'supprimer-panier' => (new CommandeController())->supprimerPanier(),
             'vider-panier' => (new CommandeController())->viderPanier(),
             'admin'          => (new AdminController())->produits(),
+            'ajouterProduit' => (new AdminController())->ajouterProduit(),
 
             // default = cas par défaut si aucune route ne correspond → page 404.
             default          => $this->notFound(),
